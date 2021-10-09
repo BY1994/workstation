@@ -3,32 +3,83 @@
 <head>
 	<link rel="stylesheet" href="css/input_form.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<title>Login Form Using HTML And CSS Only</title>
+	<title>Complexity</title>
 </head>
 <body>
 	<div class="container" id="container">
 		<div class="form-container log-in-container">
 			<form action="#">
-				<h1>Login</h1>
-				<div class="social-container">
-					<a href="#" class="social"><i class="fa fa-facebook fa-2x"></i></a>
-					<a href="#" class="social"><i class="fab fa fa-twitter fa-2x"></i></a>
-				</div>
-				<span>or use your account</span>
-				<input type="email" placeholder="Email" />
-				<input type="password" placeholder="Password" />
-				<a href="#">Forgot your password?</a>
-				<button>Log In</button>
+				<h1>Space Complexity</h1>
+                <p></p>
+				<span>Enter size of array</span>
+				<input type="number" id="int" placeholder="int" min="0" onblur="getVal(this.id)"/>
+				<input type="number" id="char" placeholder="char" min="0" onblur="getVal(this.id)"/>
+				<input type="number" id="longlong" placeholder="long long" min="0" onblur="getVal(this.id)"/>
+				<input type="number" id="float" placeholder="float" min="0" onblur="getVal(this.id)"/>
+				<input type="number" id="double" placeholder="double" min="0" onblur="getVal(this.id)"/>
+                <br>
+                <button>Calculate</button>
 			</form>
 		</div>
 		<div class="overlay-container">
 			<div class="overlay">
 				<div class="overlay-panel overlay-right">
-					<h1>HTML CSS Login Form</h1>
-					<p>This login form is created using pure HTML and CSS. For social icons, FontAwesome is used.</p>
+					<h1 id="result">0 MB</h1>
+					<p>Packing alignment is ignored.<br>1 MB equals 1000000 bytes.</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
+
+<script>
+var total_size = 0;
+var int_size = 0;
+var char_size = 0;
+var longlong_size = 0;
+var float_size = 0;
+var double_size = 0;
+
+function getVal(data_type) {
+    if (data_type == 'int') {
+        int_size = parseInt(document.querySelector('#'+data_type).value);
+        if (isNaN(int_size)) {
+            document.querySelector('#'+data_type).value = 0;
+            int_size = 0;
+        }
+    }
+    else if (data_type == 'char') {
+        char_size = parseInt(document.querySelector('#'+data_type).value);
+        if (isNaN(char_size)) {
+            document.querySelector('#'+data_type).value = 0;
+            char_size = 0;
+        }
+    }
+    else if (data_type == 'longlong') {
+        longlong_size = parseInt(document.querySelector('#'+data_type).value);
+        if (isNaN(longlong_size)) {
+            document.querySelector('#'+data_type).value = 0;
+            longlong_size = 0;
+        }
+    }
+    else if (data_type == 'float') {
+        float_size = parseInt(document.querySelector('#'+data_type).value);
+        if (isNaN(float_size)) {
+            document.querySelector('#'+data_type).value = 0;
+            float_size = 0;
+        }
+    }
+    else if (data_type == 'double') {
+        double_size = parseInt(document.querySelector('#'+data_type).value);
+        if (isNaN(double_size)) {
+            document.querySelector('#'+data_type).value = 0;
+            double_size = 0;
+        }
+    }
+
+    total_size = int_size*4 + char_size + longlong_size*8 + float_size*4 + double_size*8;
+    total_size = total_size / 1000000; // Byte to MB
+    document.getElementById('result').innerHTML = total_size + " " +"MB";
+}
+</script>
